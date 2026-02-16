@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="https://static.vecteezy.com/system/resources/thumbnails/013/961/536/small_2x/real-estate-business-concept-with-houses-rising-real-estate-market-free-vector.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizing Housing Market Trends</title>
+    <style>
+        * {
+            scroll-behavior: smooth;
+            scroll-padding: 70px;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #007BFF;
+            margin-bottom: 20px;
+            text-shadow: green 0px 0px 50px;
+        }
+
+        /* header part */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            z-index: 1000;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            border-bottom: 2px solid #ccc;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007BFF;
+        }
+
+        header .nav-desktop {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            font-size: 1.2rem;
+        }
+
+        header .nav-desktop a {
+            text-decoration: none;
+            padding: 0.5rem 0.7rem;
+            border-radius: 4px;
+            background-color: #007BFF;
+            color: white;
+            border: 1px solid #007BFF;
+            font-weight: bold;
+            font-size: large;
+            transition: all 0.2s ease;
+        }
+
+        header .nav-desktop a:hover {
+            background-color: white;
+            color: #007BFF;
+            border: 1px solid #007BFF;
+            box-shadow: 0 0px 10px #007BFF;
+            transform: scale(1.05);
+            font-weight: bold;
+        }
+
+        header #menu-toggle {
+            display: none;
+        }
+
+        header .close-open {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        header .nav-mobile {
+            display: none;
+            flex-direction: column;
+            gap: 0;
+            position: absolute;
+            top: 80px;
+            left: 0px;
+            width: 100%;
+            border-radius: 4px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        header .nav-mobile a {
+            padding: 1.5rem 1rem;
+            text-decoration: none;
+            color: #007BFF;
+            text-align: center;
+            transition: all 0.1s ease;
+        }
+
+        header .nav-mobile a:hover {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        #menu-toggle:checked~.nav-mobile {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        #menu-toggle:checked~.close-open {
+            transform: rotate(90deg);
+        }
+
+        /* Main section */
+        main {
+            padding: 100px 20px 20px 20px;
+            text-align: center;
+            border: 1px solid #ccc;
+            position: relative;
+            z-index: 1;
+            /* width: 100%; */
+        }
+
+        /* home section */
+        .home {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0px;
+            margin: 20px 0px;
+            height: 80vh;
+            background: url("https://static.vecteezy.com/system/resources/previews/032/302/269/non_2x/a-beautiful-house-with-a-garden-and-landscaping-ai-generated-free-photo.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            /* filter: brightness(80%); */
+        }
+
+        .home .animated-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* filter: brightness(100%); */
+        }
+
+        .home h1,
+        .home h2 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            padding: 5px 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+
+        }
+
+        .home .animated-title .title {
+            display: flex;
+            border-radius: 20px;
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 20px 15px;
+        }
+
+        .home .animated-title .title {
+            span {
+                padding: 10px;
+                font-size: 5rem;
+                font-weight: bold;
+
+                color: white;
+                transition: all 0.1s ease;
+                text-shadow: black 20px 20px 20px;
+                box-shadow: black 0px 0px 20px;
+                backdrop-filter: blur(5px);
+                border-radius: 10px;
+
+            }
+
+            span:hover {
+                transform: translateY(-50px);
+            }
+
+        }
+
+        @media (max-width: 768px) {
+
+            header .nav-desktop {
+                display: none;
+            }
+
+            header .close-open {
+                display: block;
+            }
+
+            .home {
+                height: 50vh;
+            }
+
+            .home .animated-title {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .home .title {
+                span {
+                    font-size: 3rem;
+                }
+
+                span:hover {
+                    transform: translateY(-30px);
+                }
+
+            }
+
+        }
+
+        /* About section */
+        .about {
+            padding: 50px 0px;
+            margin: 20px 0px;
+            border-top: 2px solid #ccc;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+        }
+
+        .about {
+            .text-button {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+                flex-wrap: nowrap;
+                padding: 0px 20px;
+            }
+
+            .text-button p {
+                text-align: left;
+                padding: 0px 20px;
+                width: 40vw;
+                backdrop-filter: blur(10px);
+            }
+
+            .text-button button {
+                padding: 0.5rem 1rem;
+                border-radius: 4px;
+                background-color: #007BFF;
+                color: white;
+                border: 1px solid #007BFF;
+                font-weight: 100;
+                transition: all 0.1s ease;
+            }
+
+            .text-button button:hover {
+                background-color: white;
+                color: #007BFF;
+                border: 1px solid #007BFF;
+                transform: scale(1.1);
+                box-shadow: 0 0px 8px #007BFF;
+            }
+
+            img {
+                width: 35%;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about {
+                /* flex-direction: column; */
+                /* gap: 20px; */
+                flex-wrap: wrap;
+            }
+
+            .about img {
+                width: 80%;
+                height: auto;
+            }
+
+            .about .text-button p {
+                width: 70vw;
+            }
+        }
+
+        /* Dashboard section */
+        .dashboard {
+            padding: 50px 0px;
+            margin: 20px 0px;
+            border-top: 2px solid #ccc;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+
+        /* Story Section */
+        .story {
+            padding: 50px 0px;
+            margin: 20px 0px;
+            border-top: 2px solid #ccc;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: #007bff98;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <h1 class="logo">Visualizing Housing Market Trends</h1>
+
+        <input type="checkbox" id="menu-toggle">
+        <label for="menu-toggle" class="close-open">&#9776;</label>
+
+        <div class="nav-desktop">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#story">Story</a>
+        </div>
+
+        <div class="nav-mobile">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#dashboard">Dashboard</a>
+            <a href="#story">Story</a>
+        </div>
+
+    </header>
+
+    <main>
+        <div id="home" class="home">
+            <h1>Welcome to, Visualizing</h1>
+            <div class="animated-title">
+                <h3 class="title">
+                    <span>H</span>
+                    <span>o</span>
+                    <span>u</span>
+                    <span>s</span>
+                    <span>i</span>
+                    <span>n</span>
+                    <span>g</span>
+                    <!-- <p>&nbsp;&nbsp;</p> -->
+                </h3>
+                <h3 class="title">
+                    <span>M</span>
+                    <span>a</span>
+                    <span>r</span>
+                    <span>k</span>
+                    <span>e</span>
+                    <span>t</span>
+                    <!-- <p>&nbsp;&nbsp;</p> -->
+                </h3>
+                <h3 class="title">
+                    <span>T</span>
+                    <span>r</span>
+                    <span>e</span>
+                    <span>n</span>
+                    <span>d</span>
+                    <span>s</td>
+                </h3>
+            </div>
+            <h2>An Analysis of Sale Prices and Features using Tableau</h2>
+        </div>
+
+        <div id="about" class="about">
+
+            <div class="text-button">
+                <h1> About Visualizing Housing Market Trends</h1>
+                <p>This project visualizes housing market trends using Tableau, analyzing sale prices and features of
+                    houses.</p>
+                <button class="get-started">Get Started</button>
+
+            </div>
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/013/961/536/small_2x/real-estate-business-concept-with-houses-rising-real-estate-market-free-vector.jpg"
+                alt="About Visualizing Housing Market Trends">
+        </div>
+
+        <div class="dashboard" id="dashboard">
+            <h1>Dashboard</h1>
+            <div class='tableauPlaceholder' id='viz1771238829336' style='position: relative'><noscript><a href='#'><img
+                            alt='Comprehensive House Data Analysis '
+                            src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Pr&#47;Project_17708262031760&#47;Dashboard1&#47;1_rss.png'
+                            style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'>
+                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                    <param name='embed_code_version' value='3' />
+                    <param name='site_root' value='' />
+                    <param name='name' value='Project_17708262031760&#47;Dashboard1' />
+                    <param name='tabs' value='no' />
+                    <param name='toolbar' value='yes' />
+                    <param name='static_image'
+                        value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Pr&#47;Project_17708262031760&#47;Dashboard1&#47;1.png' />
+                    <param name='animate_transition' value='yes' />
+                    <param name='display_static_image' value='yes' />
+                    <param name='display_spinner' value='yes' />
+                    <param name='display_overlay' value='yes' />
+                    <param name='display_count' value='yes' />
+                    <param name='language' value='en-US' />
+                    <param name='filter' value='publish=yes' />
+                </object></div>
+            <!-- <script type='text/javascript'>
+                var divElement = document.getElementById('viz1771238829336');
+                var vizElement = divElement.getElementsByTagName('object')[0];
+                if (divElement.offsetWidth > 800) {
+                    vizElement.style.width = '80%';
+                    vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
+                } else if (divElement.offsetWidth > 500) {
+                    vizElement.style.minWidth = '420px'; 
+                    vizElement.style.maxWidth = '100%'; 
+                    vizElement.style.minHeight = '587px'; 
+                    vizElement.style.maxHeight = (divElement.offsetWidth * 0.75) + 'px';
+                } else { vizElement.style.width = '100%'; 
+                vizElement.style.height = '1127px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script> -->
+            <script type='text/javascript'>
+                var divElement = document.getElementById('viz1771238829336');
+                var vizElement = divElement.getElementsByTagName('object')[0];
+                vizElement.style.width = '100%';
+                vizElement.style.height = '927px';
+                var scriptElement = document.createElement('script');
+                scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+            </script>
+        </div>
+
+        <div class="story" id="story">
+            <h1>Story</h1>
+            <div class='tableauPlaceholder' id='viz1771239736704' style='position: relative'><noscript><a href='#'><img
+                            alt='Story 1 '
+                            src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Pr&#47;Project_17708262031760&#47;Story1&#47;1_rss.png'
+                            style='border: none' /></a></noscript><object class='tableauViz' style='display:none;'>
+                    <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                    <param name='embed_code_version' value='3' />
+                    <param name='site_root' value='' />
+                    <param name='name' value='Project_17708262031760&#47;Story1' />
+                    <param name='tabs' value='no' />
+                    <param name='toolbar' value='yes' />
+                    <param name='static_image'
+                        value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Pr&#47;Project_17708262031760&#47;Story1&#47;1.png' />
+                    <param name='animate_transition' value='yes' />
+                    <param name='display_static_image' value='yes' />
+                    <param name='display_spinner' value='yes' />
+                    <param name='display_overlay' value='yes' />
+                    <param name='display_count' value='yes' />
+                    <param name='language' value='en-US' />
+                    <param name='filter' value='publish=yes' />
+                </object></div>
+            <script type='text/javascript'>
+                var divElement = document.getElementById('viz1771239736704');
+                var vizElement = divElement.getElementsByTagName('object')[0];
+                vizElement.style.width = '100%';
+                vizElement.style.height = '927px';
+                var scriptElement = document.createElement('script');
+                scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+            </script>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Data Analytics with Tableau Visualizing Housing Market Trends.</p>
+    </footer>
+</body>
+
+</html>
